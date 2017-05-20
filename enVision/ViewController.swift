@@ -25,7 +25,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
+    var currentDisplayingObject:String?
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -151,6 +151,8 @@ class ViewController: UIViewController {
         borderView.heightAnchor.constraint(equalToConstant: squareHeight).isActive = true
         borderView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
         borderView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0).isActive = true
+        borderView.isUserInteractionEnabled = false
+
         view.layoutIfNeeded()
 
     }
@@ -642,6 +644,10 @@ extension ViewController {
         switch currentModel {
         case .facenet: selectFace(tap: place)
         case .yolo: selectObject(tap: place)
+        case .inception:
+            if currentDisplayingObject != nil {
+                SpeechService.shared.speak(text: currentDisplayingObject!)
+            }
         default: break
         }
         
@@ -1005,32 +1011,32 @@ extension ViewController {
         let labelMarginY = CGFloat(5)
         
         self.removeAllLabelLayers()
-        
+        currentDisplayingObject = nil
         var labelCount = 0
 //        for entry in sortedLabels.prefix(4) {
         guard sortedLabels.count > 0  else{return}
         let entry = sortedLabels.first
             let label = entry?.0
-            let value = entry?.1
-            
+//            let value = entry?.1
+
             let originY =
                 (topMargin + ((labelHeight + labelMarginY) * CGFloat(labelCount)))
             
-            let valuePercentage = Int(value! * 100.0)
-            
-            let valueOriginX = leftMargin;
-            let valueText = String(format:"%d%%", valuePercentage)
-            
-            self.addLabelLayerWithText(valueText, originX:valueOriginX, originY:originY, width:valueWidth, height:valueHeight, alignment:kCAAlignmentRight)
-            
+//            let valuePercentage = Int(value! * 100.0)
+
+//            let valueOriginX = leftMargin;
+//            let valueText = String(format:"%d%%", valuePercentage)
+
+//            self.addLabelLayerWithText(valueText, originX:valueOriginX, originY:originY, width:valueWidth, height:valueHeight, alignment:kCAAlignmentRight)
+
             let labelOriginX = (leftMargin + valueWidth + labelMarginX)
+        currentDisplayingObject = label
+            self.addLabelLayerWithText(label!, originX:labelOriginX, originY:originY, width:labelWidth, height:labelHeight, alignment:kCAAlignmentCenter)
             
-            self.addLabelLayerWithText(label!, originX:labelOriginX, originY:originY, width:labelWidth, height:labelHeight, alignment:kCAAlignmentLeft)
-            
-            if (value > 0.5) {
-                //self.speak(label);
-            }
-            
+//            if (value > 0.5) {
+//                //self.speak(label);
+//            }
+
             labelCount += 1
 //        }
     }
@@ -1043,18 +1049,18 @@ extension ViewController {
     }
     
     func addLabelLayerWithText(_ text:String, originX:CGFloat, originY:CGFloat, width:CGFloat, height:CGFloat, alignment:String) {
-        
+
         let font = "Menlo-Regular"
         let fontSize = CGFloat(18.0)
         
         let marginSizeX = CGFloat(5.0)
         let marginSizeY = CGFloat(2.0)
         
-        let backgroundBounds = CGRect(x: originX, y: originY, width: width, height: height)
+        let backgroundBounds = CGRect(x: (self.view.bounds.width - width) / 2.0 , y: originY, width: width, height: height)
         
         let textBounds =
-            CGRect(x:(originX + marginSizeX), y:(originY + marginSizeY),
-                   width: (width - (marginSizeX * 2)), height: (height - (marginSizeY * 2)))
+            CGRect(x:(self.view.bounds.width - width) / 2.0 , y:(originY + marginSizeY),
+                   width: width, height: (height - (marginSizeY * 2)))
         
         let background = CATextLayer()
         background.backgroundColor = UIColor.black.cgColor
