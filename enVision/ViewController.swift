@@ -34,21 +34,83 @@ class ViewController: UIViewController {
         
         setupUI()
         
-        showSelectionMenu()
-        
-        /*
+//        showSelectionMenu()
+
+
+
         async {
-            self.loadFacenetModel()
+            self.loadInceptionModel()
             
             frameProcessing = { frame in
-                self.detectFaces(frameImage: frame)
-                oneShot(&finalTask)
+
+                self.recognizeInceptionObjects(frameImage: frame.cropToSquare())
+
             }
-        }*/
+        }
+
+//
+//        loadLastModel = {
+//            self.view.addActivityIndicatorOverlay(){ remove in
+//
+//                loadTask()
+//                modelLabel.text = title
+//
+//                frameProcessing = { frame in
+//                    let now = Date(timeIntervalSinceNow: 0)
+//
+//                    frameTask(frame)
+//                    oneShot(&finalTask)
+//
+//                    let runTime = Double(Date().timeIntervalSince(now))
+//                    self.setTimeLabel(time: runTime)
+//
+//                }
+//                remove()
+//
+//            }
+//        }
+//        loadLastModel()
+//
+//
+//
+//
+//
+////        alert1.addAction(
+//            createMenuAction(title: "Inception v3 (ImageNet)",
+//                             shortTitle: true,
+//                             loadTask: { () in
+//                                self.loadInceptionModel()
+//            }, frameTask: { (frame) in
+//                self.recognizeInceptionObjects(frameImage: frame)
+//            })
+//        )
+
+//        loadLastModel = { self.view.addActivityIndicatorOverlay(){ remove in
+//
+//            loadTask()
+//            modelLabel.text = title
+//
+//            frameProcessing = { frame in
+//                let now = Date(timeIntervalSinceNow: 0)
+//
+//                frameTask(frame)
+//                oneShot(&finalTask)
+//
+//                let runTime = Double(Date().timeIntervalSince(now))
+//                self.setTimeLabel(time: runTime)
+//
+//            }
+//            remove()
+//
+//            }
+//        }
+//        loadLastModel()
+
+
     }
-    
+
     func setupUI(){
-        
+
         //drawing transparency
         transparency = Transparency(frame: view.bounds)
         view.addSubview(transparency)
@@ -78,9 +140,20 @@ class ViewController: UIViewController {
         
         //threshold labels and steppers
         setupSteppers()
-        
-    }
+        let borderView = UIView()
+        view.addSubview(borderView)
+        borderView.backgroundColor = UIColor.clear
+        borderView.layer.borderWidth = 3
+        borderView.layer.borderColor = UIColor.red.cgColor
+        let squareHeight = view.bounds.size.width<view.bounds.size.height ? view.bounds.size.width : view.bounds.size.height
+        borderView.translatesAutoresizingMaskIntoConstraints = false;
+        borderView.widthAnchor.constraint(equalToConstant: squareHeight).isActive = true
+        borderView.heightAnchor.constraint(equalToConstant: squareHeight).isActive = true
+        borderView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+        borderView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0).isActive = true
+        view.layoutIfNeeded()
 
+    }
 }
 
 //MARK: -
@@ -438,11 +511,13 @@ extension ViewController {
                 self.detectYoloObjects(frameImage: frame)
             }))
             
-            alert2.addAction(self.createMenuAction(title: "YOLO 1 small (VOC)" , loadTask: { () in
+            alert2.addAction(
+                self.createMenuAction(title: "YOLO 1 small (VOC)" , loadTask: { () in
                 self.loadYoloModel(2)
             }, frameTask: { (frame) in
                 self.detectYoloObjects(frameImage: frame)
-            }))
+            })
+            )
             
             alert2.addAction(self.createMenuAction(title: "YOLO 1.1 tiny (COCO)", loadTask: { () in
                 self.loadYoloModel(3)
@@ -474,9 +549,10 @@ extension ViewController {
             self.detectFaces(frameImage: frame)
         }))
         
-        alert1.addAction(createMenuAction(title: "Inception v3 (ImageNet)", shortTitle: true, loadTask: { () in
+        alert1.addAction(
+            createMenuAction(title: "Inception v3 (ImageNet)", shortTitle: true, loadTask: { () in
             self.loadInceptionModel()
-        }, frameTask: { (frame) in
+            }, frameTask: { (frame) in
             self.recognizeInceptionObjects(frameImage: frame)
         }))
         
@@ -502,10 +578,15 @@ extension ViewController {
         
     }
     
-    func createMenuAction(title: String, shortTitle: Bool = false, style:UIAlertActionStyle = .default, loadTask: @escaping (Void)->Void, frameTask:@escaping (CIImage)->Void)-> UIAlertAction {
+    func createMenuAction(title: String,
+                          shortTitle: Bool = false,
+                          style:UIAlertActionStyle = .default,
+                          loadTask: @escaping (Void)->Void,
+                          frameTask:@escaping (CIImage)->Void)-> UIAlertAction {
         
         return UIAlertAction(title: shortTitle ? title.components(separatedBy: " ").first : title, style: style) { _ in
-            loadLastModel = { self.view.addActivityIndicatorOverlay(){ remove in
+            loadLastModel = {
+                self.view.addActivityIndicatorOverlay(){ remove in
                 
                 loadTask()
                 modelLabel.text = title
@@ -926,15 +1007,16 @@ extension ViewController {
         self.removeAllLabelLayers()
         
         var labelCount = 0
-        for entry in sortedLabels.prefix(4) {
-            
-            let label = entry.0
-            let value = entry.1
+//        for entry in sortedLabels.prefix(4) {
+        guard sortedLabels.count > 0  else{return}
+        let entry = sortedLabels.first
+            let label = entry?.0
+            let value = entry?.1
             
             let originY =
                 (topMargin + ((labelHeight + labelMarginY) * CGFloat(labelCount)))
             
-            let valuePercentage = Int(value * 100.0)
+            let valuePercentage = Int(value! * 100.0)
             
             let valueOriginX = leftMargin;
             let valueText = String(format:"%d%%", valuePercentage)
@@ -943,14 +1025,14 @@ extension ViewController {
             
             let labelOriginX = (leftMargin + valueWidth + labelMarginX)
             
-            self.addLabelLayerWithText(label, originX:labelOriginX, originY:originY, width:labelWidth, height:labelHeight, alignment:kCAAlignmentLeft)
+            self.addLabelLayerWithText(label!, originX:labelOriginX, originY:originY, width:labelWidth, height:labelHeight, alignment:kCAAlignmentLeft)
             
             if (value > 0.5) {
                 //self.speak(label);
             }
             
             labelCount += 1
-        }
+//        }
     }
     
     func removeAllLabelLayers() {
@@ -1012,13 +1094,29 @@ extension ViewController {
         listView.isHidden = false
     }
     
-    /*func speak(_ words: String){
-     guard !synth.isSpeaking else { return }
-     let utterance = AVSpeechUtterance(string: words)
-     utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-     utterance.rate = 0.75*AVSpeechUtteranceDefaultSpeechRate
-     synth.speak(utterance)
-     }*/
-    
+//    func speak(_ words: String){
+//     guard !synth.isSpeaking else { return }
+//     let utterance = AVSpeechUtterance(string: words)
+//     utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+//     utterance.rate = 0.75*AVSpeechUtteranceDefaultSpeechRate
+//     synth.speak(utterance)
+//     }
+
 }
 
+extension CIImage{
+    func cropToSquare() -> CIImage{
+        let img = UIImage(ciImage: self)
+        let squareHeight = img.size.width<img.size.height ? img.size.width : img.size.height
+
+        let sz = img.size
+        UIGraphicsBeginImageContextWithOptions(
+            CGSize(width:squareHeight, height:squareHeight),
+        false, 0)
+        img.draw(at:CGPoint(x: (sz.width-squareHeight)/2.0, y: (sz.height-squareHeight)/2.0))
+        let tmpImg = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return CIImage(image: tmpImg!)!
+        }
+
+}

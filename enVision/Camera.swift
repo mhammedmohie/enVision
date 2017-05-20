@@ -362,7 +362,6 @@ extension ViewController : AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptu
              NSLog("Could not capture still image: %@", error)
              }
              }*/
-            
         }
         
     }

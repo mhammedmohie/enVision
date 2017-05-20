@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>LambdaKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-enVision.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SwiftyTimer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SwiftyUserDefaults.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>72422EC567E74AFEB596E23C66F53E37</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>79DCF45184D60EB7F9942211E54D99F3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D08753EC43AC167D6C3E72F5CC145CC4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D44AA13121D5694A2029CACB65EBE171</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

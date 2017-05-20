@@ -1,0 +1,6 @@
+framework module LambdaKit {
+  umbrella header "LambdaKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

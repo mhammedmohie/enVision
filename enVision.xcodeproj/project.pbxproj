@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5CA96D5FE578E2AFD092E3D1 /* Pods_enVision.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E7214476E0E9479DB659A4 /* Pods_enVision.framework */; };
 		9A0529FA1E10722A00C69E6A /* tfkNN.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A0529F91E10722A00C69E6A /* tfkNN.mm */; };
 		9A8B0BB31E1D4B1F00752AAE /* yolo-tiny-opt.pb in Resources */ = {isa = PBXBuildFile; fileRef = 9A8B0BB21E1D4B1F00752AAE /* yolo-tiny-opt.pb */; };
 		9AC021651DE6290C00C29FF4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC0215F1DE6290C00C29FF4 /* AppDelegate.swift */; };
@@ -43,9 +44,14 @@
 		9AF0E06F1E1DB4E50029F13F /* tiny-coco-map.pb in Resources */ = {isa = PBXBuildFile; fileRef = 9AF0E06E1E1DB4E50029F13F /* tiny-coco-map.pb */; };
 		9AF0E0711E1DB4F60029F13F /* InceptionV3-opt.pb in Resources */ = {isa = PBXBuildFile; fileRef = 9AF0E0701E1DB4F60029F13F /* InceptionV3-opt.pb */; };
 		9AF0E0731E1DB4FC0029F13F /* facenet-inf-opt.pb in Resources */ = {isa = PBXBuildFile; fileRef = 9AF0E0721E1DB4FC0029F13F /* facenet-inf-opt.pb */; };
+		9E7FD7CC1ED0AEBF00694FDA /* SpeechService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7FD7CB1ED0AEBF00694FDA /* SpeechService.swift */; };
+		9E7FD7D01ED0B53700694FDA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7FD7CF1ED0B53700694FDA /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		365E4CBEEEC4E56EC6A79D90 /* Pods-enVision.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-enVision.debug.xcconfig"; path = "Pods/Target Support Files/Pods-enVision/Pods-enVision.debug.xcconfig"; sourceTree = "<group>"; };
+		60EE9E0DACB3D3F7DDD2A98C /* Pods-enVision.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-enVision.release.xcconfig"; path = "Pods/Target Support Files/Pods-enVision/Pods-enVision.release.xcconfig"; sourceTree = "<group>"; };
+		67E7214476E0E9479DB659A4 /* Pods_enVision.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_enVision.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A0529F91E10722A00C69E6A /* tfkNN.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = tfkNN.mm; sourceTree = "<group>"; };
 		9A0529FB1E10723700C69E6A /* tfkNN.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tfkNN.h; sourceTree = "<group>"; };
 		9A8B0BB21E1D4B1F00752AAE /* yolo-tiny-opt.pb */ = {isa = PBXFileReference; lastKnownFileType = file; name = "yolo-tiny-opt.pb"; path = "../../tf/models/yolo-tiny-opt.pb"; sourceTree = "<group>"; };
@@ -91,6 +97,8 @@
 		9AF0E06E1E1DB4E50029F13F /* tiny-coco-map.pb */ = {isa = PBXFileReference; lastKnownFileType = file; name = "tiny-coco-map.pb"; path = "../../tf/models/tiny-coco-map.pb"; sourceTree = "<group>"; };
 		9AF0E0701E1DB4F60029F13F /* InceptionV3-opt.pb */ = {isa = PBXFileReference; lastKnownFileType = file; name = "InceptionV3-opt.pb"; path = "../../tf/models/InceptionV3-opt.pb"; sourceTree = "<group>"; };
 		9AF0E0721E1DB4FC0029F13F /* facenet-inf-opt.pb */ = {isa = PBXFileReference; lastKnownFileType = file; name = "facenet-inf-opt.pb"; path = "../../tf/models/facenet-inf-opt.pb"; sourceTree = "<group>"; };
+		9E7FD7CB1ED0AEBF00694FDA /* SpeechService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechService.swift; sourceTree = "<group>"; };
+		9E7FD7CF1ED0B53700694FDA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,12 +111,22 @@
 				9AC021A41DE62AD600C29FF4 /* Accelerate.framework in Frameworks */,
 				9AEF9CF41E18167400E9A360 /* DeepBelief.framework in Frameworks */,
 				9AEF9CF21E18165F00E9A360 /* libtensorflow-core.a in Frameworks */,
+				5CA96D5FE578E2AFD092E3D1 /* Pods_enVision.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		90EF08B125F89578395CAB59 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				365E4CBEEEC4E56EC6A79D90 /* Pods-enVision.debug.xcconfig */,
+				60EE9E0DACB3D3F7DDD2A98C /* Pods-enVision.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		9A5D54B11DEED0F10089918F /* TensorFlow */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +180,7 @@
 				9AC0214C1DE628EC00C29FF4 /* enVision */,
 				9AC0214B1DE628EC00C29FF4 /* Products */,
 				9AC021A21DE62AD500C29FF4 /* Frameworks */,
+				90EF08B125F89578395CAB59 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -176,6 +195,8 @@
 		9AC0214C1DE628EC00C29FF4 /* enVision */ = {
 			isa = PBXGroup;
 			children = (
+				9E7FD7CF1ED0B53700694FDA /* Constants.swift */,
+				9E7FD7CB1ED0AEBF00694FDA /* SpeechService.swift */,
 				9AC0215F1DE6290C00C29FF4 /* AppDelegate.swift */,
 				9AC021601DE6290C00C29FF4 /* ViewController.swift */,
 				9AC021621DE6290C00C29FF4 /* YOLO.swift */,
@@ -202,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				9AC021A31DE62AD600C29FF4 /* Accelerate.framework */,
+				67E7214476E0E9479DB659A4 /* Pods_enVision.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -231,9 +253,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9AC0215C1DE628EC00C29FF4 /* Build configuration list for PBXNativeTarget "enVision" */;
 			buildPhases = (
+				F7EBA3931A9B74E4C0143B0D /* [CP] Check Pods Manifest.lock */,
 				9AC021461DE628EC00C29FF4 /* Sources */,
 				9AC021471DE628EC00C29FF4 /* Frameworks */,
 				9AC021481DE628EC00C29FF4 /* Resources */,
+				309D8FA734253E4551F5E33A /* [CP] Embed Pods Frameworks */,
+				95E7C39AE7E42508A5DD6ADB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -256,7 +281,7 @@
 				TargetAttributes = {
 					9AC021491DE628EC00C29FF4 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 423D7XJN2V;
+						DevelopmentTeam = 398RE9TJ24;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 					};
@@ -304,16 +329,66 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		309D8FA734253E4551F5E33A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-enVision/Pods-enVision-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		95E7C39AE7E42508A5DD6ADB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-enVision/Pods-enVision-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F7EBA3931A9B74E4C0143B0D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9AC021461DE628EC00C29FF4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				9AC021781DE6292400C29FF4 /* svm.cpp in Sources */,
+				9E7FD7D01ED0B53700694FDA /* Constants.swift in Sources */,
 				9AEF8E721E1879E400210D31 /* Transparency.swift in Sources */,
 				9AC021681DE6290C00C29FF4 /* YOLO.swift in Sources */,
 				9AC021661DE6290C00C29FF4 /* ViewController.swift in Sources */,
 				9AC0216A1DE6290C00C29FF4 /* Camera.swift in Sources */,
+				9E7FD7CC1ED0AEBF00694FDA /* SpeechService.swift in Sources */,
 				9AC0216F1DE6291C00C29FF4 /* tfWrap.mm in Sources */,
 				9AD668071E12CDF6002B4D62 /* kNN.swift in Sources */,
 				9AC021691DE6290C00C29FF4 /* Inception.swift in Sources */,
@@ -427,11 +502,12 @@
 		};
 		9AC0215D1DE628EC00C29FF4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 365E4CBEEEC4E56EC6A79D90 /* Pods-enVision.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = arm64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 423D7XJN2V;
+				DEVELOPMENT_TEAM = 398RE9TJ24;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -457,11 +533,12 @@
 		};
 		9AC0215E1DE628EC00C29FF4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 60EE9E0DACB3D3F7DDD2A98C /* Pods-enVision.release.xcconfig */;
 			buildSettings = {
 				ARCHS = arm64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 423D7XJN2V;
+				DEVELOPMENT_TEAM = 398RE9TJ24;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

@@ -1,0 +1,28 @@
+PODS:
+  - LambdaKit (0.0.4)
+  - SwiftyTimer (2.0.0)
+  - SwiftyUserDefaults (3.0.0)
+
+DEPENDENCIES:
+  - LambdaKit
+  - SwiftyTimer (from `https://github.com/radex/SwiftyTimer.git`, branch `master`)
+  - SwiftyUserDefaults
+
+EXTERNAL SOURCES:
+  SwiftyTimer:
+    :branch: master
+    :git: https://github.com/radex/SwiftyTimer.git
+
+CHECKOUT OPTIONS:
+  SwiftyTimer:
+    :commit: 77325e642504ccf1d1dde022da35c384764958e7
+    :git: https://github.com/radex/SwiftyTimer.git
+
+SPEC CHECKSUMS:
+  LambdaKit: 24166f69b7c3371c14b945a0ec575906086f987d
+  SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
+  SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
+
+PODFILE CHECKSUM: 97ea05cf1258f5347e4ce6d4f188e2699457177b
+
+COCOAPODS: 1.1.1
